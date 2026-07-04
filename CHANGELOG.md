@@ -4,6 +4,25 @@ All notable changes to Nova are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/),
 and this project uses [Semantic Versioning](https://semver.org/).
 
+## [0.3.0] - 2026-07-04
+
+Nova gets a **face and a storefront**: a full website with a chat app.
+
+### Added
+- **Chat web UI** at `/chat` — a ChatGPT-style page (message bubbles, typing
+  indicator, quick-start suggestions, dark theme) served straight from FastAPI
+  with zero build step.
+- **Website homepage** at `/` — hero, features grid, how-it-works, Free/Pro
+  pricing section (Pro is honestly labeled "coming soon"), and footer.
+- Configurable **system prompt** (`ai.system_prompt`) so the assistant
+  introduces itself as Nova when no system message is supplied.
+- Tests for the homepage and chat page.
+
+### Changed
+- Distribution renamed `nova` → `nova-assistant` (the old name collided with
+  OpenStack Nova on PyPI and triggered dozens of false Dependabot alerts).
+  The import package and the `nova` CLI command are unchanged.
+
 ## [0.2.0] - 2026-07-04
 
 The **GitHub-ready** release: same solid foundation, now packaged as a proper

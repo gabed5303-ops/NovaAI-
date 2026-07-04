@@ -17,7 +17,11 @@ local and cloud AI models — all behind tidy, swappable interfaces.
 
 ## 📸 Screenshots
 
-Nova's built-in chat page — a clean, private assistant running on your own machine:
+**The website** — Nova ships with its own landing page (hero, features, pricing):
+
+![Nova homepage](docs/images/home.png)
+
+**The chat app** — a real conversation with the local model, fully private:
 
 ![Nova chat page](docs/images/chat.png)
 
@@ -27,6 +31,7 @@ Nova's built-in chat page — a clean, private assistant running on your own mac
 
 | Capability | Status | Where |
 |---|---|---|
+| **Website homepage** (hero, features, pricing) | ✅ working | `src/nova/api/routes/home.py` |
 | **Chat web UI** | ✅ working | `src/nova/api/routes/web.py` |
 
 | Capability | Status | Where |
@@ -63,9 +68,10 @@ uv run pytest
 uv run nova
 ```
 
-Then open **http://127.0.0.1:8000/** in your browser — you'll get Nova's **chat
-page**. (Developers: **http://127.0.0.1:8000/docs** is an interactive page to try
-every API endpoint.) Or use `curl`:
+Then open **http://127.0.0.1:8000/** in your browser — you'll land on Nova's
+**website homepage**, and **http://127.0.0.1:8000/chat** is the chat app itself.
+(Developers: **http://127.0.0.1:8000/docs** is an interactive page to try every
+API endpoint.) Or use `curl`:
 
 ```bash
 curl http://127.0.0.1:8000/health

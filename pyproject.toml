@@ -14,7 +14,7 @@
 # unrelated OpenStack Nova package on PyPI, which caused false security alerts).
 # The import package is still `nova` and the CLI command is still `nova`.
 name = "nova-assistant"
-version = "0.2.0"
+version = "0.3.0"
 description = "Nova — a modular, JARVIS-inspired AI assistant."
 readme = "README.md"
 requires-python = ">=3.11"          # Works on Python 3.11 and newer.
@@ -76,9 +76,10 @@ select = ["E", "F", "I", "UP", "B"]
 extend-immutable-calls = ["fastapi.Depends", "fastapi.Query", "fastapi.Body"]
 
 [tool.ruff.lint.per-file-ignores]
-# web.py embeds the chat page (HTML/CSS/JS) as one string, where long lines are
-# normal — don't enforce Python's line-length rule inside it.
+# web.py and home.py embed whole web pages (HTML/CSS/JS) as strings, where long
+# lines are normal — don't enforce Python's line-length rule inside them.
 "src/nova/api/routes/web.py" = ["E501"]
+"src/nova/api/routes/home.py" = ["E501"]
 
 # ---- Mypy: checks we're using the right kinds of data (type checking) ----
 [tool.mypy]

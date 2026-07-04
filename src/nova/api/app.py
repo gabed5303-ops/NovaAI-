@@ -15,7 +15,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 
 from nova import __version__
-from nova.api.routes import chat, commands, health, memory, plugins, voice, web
+from nova.api.routes import chat, commands, health, home, memory, plugins, voice, web
 from nova.context import NovaContext, build_context
 from nova.core.config import Settings
 
@@ -52,7 +52,8 @@ def create_app(
     )
 
     # Wire up every group of endpoints.
-    app.include_router(web.router)  # the chat web page at "/"
+    app.include_router(home.router)  # the website homepage at "/"
+    app.include_router(web.router)  # the chat app page at "/chat"
     app.include_router(health.router)
     app.include_router(chat.router)
     app.include_router(memory.router)

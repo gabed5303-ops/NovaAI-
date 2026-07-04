@@ -1,9 +1,11 @@
-"""Serves Nova's chat web page (the "face") at the site root: GET /
+"""Serves Nova's chat web page (the "face") at GET /chat
+
+(The homepage/storefront lives in home.py; this is the app itself.)
 
 This is a single, self-contained HTML page (styles + script inline) so it needs
-no build step and no external files. The page talks to the /chat endpoint we
-already built. Keeping the whole page here as one string means it always ships
-with the package with zero extra setup.
+no build step and no external files. The page talks to the POST /chat endpoint
+we already built — same path, different method. Keeping the whole page here as
+one string means it always ships with the package with zero extra setup.
 """
 
 from __future__ import annotations
@@ -106,11 +108,13 @@ INDEX_HTML = """<!doctype html>
 </head>
 <body>
   <header>
-    <div class="logo">N</div>
-    <div>
-      <div class="title">Nova</div>
-      <div class="subtitle">your local AI assistant</div>
-    </div>
+    <a href="/" style="text-decoration:none; display:flex; align-items:center; gap:12px; color:inherit;" title="Back to homepage">
+      <div class="logo">N</div>
+      <div>
+        <div class="title">Nova</div>
+        <div class="subtitle">your local AI assistant</div>
+      </div>
+    </a>
     <div class="dot" title="online"></div>
     <div class="status" id="model">connecting…</div>
   </header>
@@ -217,13 +221,18 @@ INDEX_HTML = """<!doctype html>
     chip.addEventListener('click', () => { input.value = chip.textContent; autoGrow(); send(); });
   });
   input.focus();
+
+  // Deep links: /chat?ask=Hello auto-sends a first message. Lets other pages
+  // (like the homepage) link straight into a live conversation.
+  const askParam = new URLSearchParams(location.search).get('ask');
+  if (askParam) { input.value = askParam; autoGrow(); send(); }
 </script>
 </body>
 </html>
 """
 
 
-@router.get("/", response_class=HTMLResponse)
-async def index() -> HTMLResponse:
-    """The Nova chat page."""
+@router.get("/chat", response_class=HTMLResponse)
+async def chat_page() -> HTMLResponse:
+    """The Nova chat page (the app). GET serves the page; POST /chat is the API."""
     return HTMLResponse(INDEX_HTML)
