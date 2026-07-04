@@ -10,7 +10,10 @@
 # you run `uv add <tool-name>` and uv updates this file for you.
 
 [project]
-name = "nova"
+# Distribution name is "nova-assistant" (the plain "nova" name collides with the
+# unrelated OpenStack Nova package on PyPI, which caused false security alerts).
+# The import package is still `nova` and the CLI command is still `nova`.
+name = "nova-assistant"
 version = "0.2.0"
 description = "Nova — a modular, JARVIS-inspired AI assistant."
 readme = "README.md"

@@ -481,7 +481,7 @@ wheels = [
 ]
 
 [[package]]
-name = "nova"
+name = "nova-assistant"
 version = "0.2.0"
 source = { editable = "." }
 dependencies = [
