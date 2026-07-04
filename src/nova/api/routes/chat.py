@@ -21,11 +21,16 @@ router = APIRouter(tags=["ai"])
 async def chat(body: ChatIn, context: NovaContext = Depends(get_context)) -> ChatOut:
     # Figure out the list of messages from whichever form the caller used.
     if body.messages:
-        messages = body.messages
+        messages = list(body.messages)
     elif body.message:
         messages = [Message(role="user", content=body.message)]
     else:
         raise HTTPException(status_code=400, detail="Provide either 'message' or 'messages'.")
+
+    # Give Nova its personality: if the caller didn't include a system message,
+    # add the one from settings so the assistant knows it's "Nova".
+    if not any(m.role == "system" for m in messages):
+        messages.insert(0, Message(role="system", content=context.settings.ai.system_prompt))
 
     request = ChatRequest(
         messages=messages,

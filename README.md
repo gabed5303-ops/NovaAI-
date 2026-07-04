@@ -9,13 +9,25 @@
 to grow: clean architecture, a plugin system, memory, voice, and support for both
 local and cloud AI models — all behind tidy, swappable interfaces.
 
-> This repository currently contains the **foundation**: a working, well-documented
-> skeleton you can run today and build features on for years. Voice is a placeholder
-> for now; everything is wired end-to-end.
+> This repository currently contains the **foundation** plus a built-in **chat web
+> UI**: a working, well-documented assistant you can run today and build features on
+> for years. Voice is a placeholder for now; everything else is wired end-to-end.
+
+---
+
+## 📸 Screenshots
+
+Nova's built-in chat page — a clean, private assistant running on your own machine:
+
+![Nova chat page](docs/images/chat.png)
 
 ---
 
 ## ✨ What's inside
+
+| Capability | Status | Where |
+|---|---|---|
+| **Chat web UI** | ✅ working | `src/nova/api/routes/web.py` |
 
 | Capability | Status | Where |
 |---|---|---|
@@ -51,8 +63,9 @@ uv run pytest
 uv run nova
 ```
 
-Then open **http://127.0.0.1:8000/docs** — FastAPI gives you an interactive page
-to try every endpoint. Or use `curl`:
+Then open **http://127.0.0.1:8000/** in your browser — you'll get Nova's **chat
+page**. (Developers: **http://127.0.0.1:8000/docs** is an interactive page to try
+every API endpoint.) Or use `curl`:
 
 ```bash
 curl http://127.0.0.1:8000/health

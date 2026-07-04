@@ -49,6 +49,14 @@ class AISettings(BaseModel):
     temperature: float = 0.7  # 0 = focused/predictable, 1 = creative.
     max_tokens: int = 1024  # Rough cap on how long a reply can be.
 
+    # Nova's personality / instructions, sent to the AI as a "system" message
+    # when the conversation doesn't already include one.
+    system_prompt: str = (
+        "You are Nova, a helpful, friendly AI assistant inspired by JARVIS. "
+        "You run locally and privately on the user's own computer. "
+        "Be clear, concise, and warm."
+    )
+
     # --- Local (Ollama) options ---
     ollama_host: str = "http://localhost:11434"
     ollama_model: str = "llama3"

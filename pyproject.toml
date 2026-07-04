@@ -72,6 +72,11 @@ select = ["E", "F", "I", "UP", "B"]
 # linter that's fine so it stops flagging our route handlers.
 extend-immutable-calls = ["fastapi.Depends", "fastapi.Query", "fastapi.Body"]
 
+[tool.ruff.lint.per-file-ignores]
+# web.py embeds the chat page (HTML/CSS/JS) as one string, where long lines are
+# normal — don't enforce Python's line-length rule inside it.
+"src/nova/api/routes/web.py" = ["E501"]
+
 # ---- Mypy: checks we're using the right kinds of data (type checking) ----
 [tool.mypy]
 python_version = "3.11"
