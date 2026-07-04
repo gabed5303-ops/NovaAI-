@@ -1,4 +1,4 @@
-# Nova 🤖
+# Nova 
 
 [![CI](https://github.com/gabed5303-ops/NovaAI-/actions/workflows/ci.yml/badge.svg)](https://github.com/gabed5303-ops/NovaAI-/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
@@ -15,7 +15,7 @@ local and cloud AI models — all behind tidy, swappable interfaces.
 
 ---
 
-## 📸 Screenshots
+##  Screenshots
 
 **The website** — Nova ships with its own landing page (hero, features, pricing):
 
@@ -27,7 +27,7 @@ local and cloud AI models — all behind tidy, swappable interfaces.
 
 ---
 
-## ✨ What's inside
+##  What's inside
 
 | Capability | Status | Where |
 |---|---|---|
@@ -48,7 +48,7 @@ local and cloud AI models — all behind tidy, swappable interfaces.
 
 ---
 
-## 🚀 Quick start
+##  Quick start
 
 You need [**uv**](https://docs.astral.sh/uv/) (a fast Python project manager) and
 Python 3.11+.
@@ -81,7 +81,7 @@ curl -X POST http://127.0.0.1:8000/commands/hello -H "Content-Type: application/
 
 ---
 
-## 🧠 Talking to an AI model
+##  Talking to an AI model
 
 **Local (default) — Ollama:** install [Ollama](https://ollama.com), then:
 
@@ -105,7 +105,7 @@ crashing.
 
 ---
 
-## 🗂️ Project layout — every component explained
+##  Project layout — every component explained
 
 ```
 Nova/
@@ -163,7 +163,7 @@ For the reasoning behind these choices, see **[docs/ARCHITECTURE.md](docs/ARCHIT
 
 ---
 
-## 🔌 Writing your own plugin
+##  Writing your own plugin
 
 A plugin teaches Nova new commands. Copy `src/nova/plugins/builtin/hello.py` as a
 template:
@@ -196,7 +196,7 @@ the next start. (Third-party plugins can be published as packages using the
 
 ---
 
-## ⚙️ Configuration
+##  Configuration ("Settings")
 
 Settings can come from three places (higher wins):
 
@@ -208,7 +208,7 @@ See `config/config.example.yaml` and `.env.example` for every available option.
 
 ---
 
-## 🧪 Development
+##  Development
 
 ```bash
 uv run pytest        # run the tests
@@ -221,7 +221,7 @@ GitHub Actions runs all three automatically on every push (see
 
 ---
 
-## 🤝 Contributing & security
+##  Contributing & security
 
 - New here? Start with **[CONTRIBUTING.md](CONTRIBUTING.md)**.
 - Please follow our **[Code of Conduct](CODE_OF_CONDUCT.md)**.
@@ -231,7 +231,7 @@ GitHub Actions runs all three automatically on every push (see
 
 ---
 
-## 🗺️ Roadmap (next foundations to build on)
+##  Roadmap (next foundations to build on)
 
 - Real speech-to-text (e.g. Whisper) and text-to-speech (e.g. Piper).
 - A database / vector memory backend for smarter recall.
@@ -241,6 +241,6 @@ GitHub Actions runs all three automatically on every push (see
 
 ---
 
-## 📄 License
+##  License
 
 [MIT](LICENSE) — free to use, change, and share.
