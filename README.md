@@ -1,5 +1,10 @@
 # Nova 🤖
 
+[![CI](https://github.com/gabed5303-ops/NovaAI-/actions/workflows/ci.yml/badge.svg)](https://github.com/gabed5303-ops/NovaAI-/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/)
+[![Code style: ruff](https://img.shields.io/badge/style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
+
 **Nova** is a modular, JARVIS-inspired AI assistant written in Python. It's built
 to grow: clean architecture, a plugin system, memory, voice, and support for both
 local and cloud AI models — all behind tidy, swappable interfaces.
@@ -194,6 +199,16 @@ uv run mypy src      # check types
 
 GitHub Actions runs all three automatically on every push (see
 `.github/workflows/ci.yml`).
+
+---
+
+## 🤝 Contributing & security
+
+- New here? Start with **[CONTRIBUTING.md](CONTRIBUTING.md)**.
+- Please follow our **[Code of Conduct](CODE_OF_CONDUCT.md)**.
+- Found a security issue? See **[SECURITY.md](SECURITY.md)** — report it
+  privately, never in a public issue.
+- Changes are tracked in **[CHANGELOG.md](CHANGELOG.md)**.
 
 ---
 

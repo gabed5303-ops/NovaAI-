@@ -4,4 +4,4 @@ This file marks the `nova` folder as a Python "package" (a bundle of code
 you can import). The only thing it exposes right now is the version number.
 """
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"

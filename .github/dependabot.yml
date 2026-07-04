@@ -1,0 +1,23 @@
+# Dependabot keeps Nova's dependencies up to date and patches known security
+# holes automatically. It opens pull requests when newer/safer versions exist.
+# Docs: https://docs.github.com/en/code-security/dependabot
+
+version: 2
+updates:
+  # Keep our Python dependencies fresh.
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+
+  # Keep the GitHub Actions used in CI up to date.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "ci"
