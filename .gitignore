@@ -1,0 +1,47 @@
+# .gitignore
+# -----------
+# Files and folders listed here are NEVER saved into git. This keeps secrets,
+# temporary files, and machine-specific stuff out of the shared project.
+
+# --- Python-generated files ---
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info/
+.eggs/
+
+# --- Virtual environments ---
+.venv/
+venv/
+env/
+
+# --- Secrets & local settings (IMPORTANT: never commit these) ---
+# NOTE: .gitignore does NOT support comments on the same line as a rule,
+# so every comment here is on its own line.
+.env
+.env.*
+# ...but DO keep the shared example file:
+!.env.example
+# Local settings file; only the committed .example version is shared:
+config/config.yaml
+
+# --- Nova local data ---
+*.log
+data/
+memory.json
+
+# --- Testing / tooling caches ---
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# --- Editor / OS / tooling junk ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+.claude/

@@ -1,0 +1,87 @@
+# pyproject.toml
+# ---------------
+# This is the "instruction box" for the whole project.
+# It tells Python (and the `uv` tool) three things:
+#   1. What Nova is (its name, version, description).
+#   2. Which other tools ("dependencies") Nova needs to run.
+#   3. How we check our code is tidy and correct (ruff, mypy, pytest).
+#
+# If you're new: you almost never edit this by hand for adding tools —
+# you run `uv add <tool-name>` and uv updates this file for you.
+
+[project]
+name = "nova"
+version = "0.1.0"
+description = "Nova — a modular, JARVIS-inspired AI assistant."
+readme = "README.md"
+requires-python = ">=3.11"          # Works on Python 3.11 and newer.
+license = { text = "MIT" }
+authors = [{ name = "Nova contributors" }]
+keywords = ["ai", "assistant", "jarvis", "voice", "fastapi", "plugins"]
+
+# These are the tools Nova needs to run at all times (the "core kit").
+dependencies = [
+    "fastapi>=0.115",           # The web server framework (Nova's "front door").
+    "uvicorn[standard]>=0.30",  # The engine that actually runs the web server.
+    "pydantic>=2.7",            # Checks our data is shaped correctly.
+    "pydantic-settings>=2.3",   # Loads settings from files + environment safely.
+    "pyyaml>=6.0",              # Reads the config.yaml settings file.
+    "httpx>=0.27",              # Makes web requests (e.g. talking to Ollama).
+    "platformdirs>=4.2",        # Finds the right folder to store data on any OS.
+]
+
+# Optional "add-on kits" you only install if you want that feature.
+# Install with:  uv sync --extra cloud
+[project.optional-dependencies]
+cloud = ["anthropic>=0.34"]     # Needed only if you use Claude (cloud AI).
+
+# This makes a handy command called `nova` that starts the assistant.
+# After install you can just type:  nova
+[project.scripts]
+nova = "nova.main:run"
+
+# Tools used only while developing (testing, linting). Not needed to just run Nova.
+[dependency-groups]
+dev = [
+    "pytest>=8.2",
+    "pytest-asyncio>=0.23",
+    "ruff>=0.5",
+    "mypy>=1.10",
+    "types-pyyaml>=6.0",
+]
+
+# ---- Build system: how the package gets assembled ----
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/nova"]
+
+# ---- Ruff: our automatic code tidier + style checker ----
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+# A friendly starter set of checks: pycodestyle, pyflakes, imports, upgrades, bugbear.
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.ruff.lint.flake8-bugbear]
+# FastAPI's officially-recommended style is `param = Depends(...)`. Tell the
+# linter that's fine so it stops flagging our route handlers.
+extend-immutable-calls = ["fastapi.Depends", "fastapi.Query", "fastapi.Body"]
+
+# ---- Mypy: checks we're using the right kinds of data (type checking) ----
+[tool.mypy]
+python_version = "3.11"
+packages = ["nova"]
+mypy_path = "src"
+ignore_missing_imports = true       # Don't complain about libraries without type info.
+warn_unused_ignores = true
+disallow_untyped_defs = false       # Beginner-friendly: we don't force types everywhere yet.
+
+# ---- Pytest: how we run our tests ----
+[tool.pytest.ini_options]
+asyncio_mode = "auto"               # Lets us write async tests without extra boilerplate.
+testpaths = ["tests"]

@@ -1,0 +1,42 @@
+# config.example.yaml
+# --------------------
+# This is a SAMPLE settings file. To use it:
+#   1. Copy it to config/config.yaml   ->   cp config/config.example.yaml config/config.yaml
+#   2. Edit config/config.yaml to taste.
+#
+# config/config.yaml is ignored by git (see .gitignore), so your local tweaks
+# and any machine-specific values stay on your machine.
+#
+# Anything you leave out here falls back to Nova's built-in defaults.
+# Secrets (like API keys) should NOT go here — put them in environment variables
+# or a .env file instead (see .env.example).
+
+server:
+  host: "127.0.0.1"   # "127.0.0.1" = local only. Use "0.0.0.0" to allow other devices.
+  port: 8000
+  reload: false
+
+ai:
+  provider: "ollama"        # "ollama" (local) or "anthropic" (cloud Claude).
+  temperature: 0.7          # 0 = focused, 1 = creative.
+  max_tokens: 1024
+
+  # --- Local (Ollama) ---
+  ollama_host: "http://localhost:11434"
+  ollama_model: "llama3"
+
+  # --- Cloud (Anthropic Claude) ---
+  # Do NOT put the API key here. Set NOVA_AI__ANTHROPIC_API_KEY in your environment.
+  anthropic_model: "claude-sonnet-5"
+
+memory:
+  backend: "json"   # Only "json" today.
+  path: null        # null = a sensible per-user folder. Or set a file path.
+
+voice:
+  stt_engine: "placeholder"   # Listening engine (real ones come later).
+  tts_engine: "placeholder"   # Speaking engine (real ones come later).
+
+logging:
+  level: "INFO"        # DEBUG | INFO | WARNING | ERROR
+  json_format: false   # true = machine-readable JSON logs.

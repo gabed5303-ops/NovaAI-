@@ -1,0 +1,42 @@
+# .github/workflows/ci.yml
+# -------------------------
+# "CI" = Continuous Integration. This is a robot that runs on GitHub every time
+# you push code or open a pull request. It checks the code is tidy (ruff), has
+# correct types (mypy), and that all tests pass (pytest). If something breaks,
+# GitHub shows a red X so you catch it early.
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+
+      - name: Set up Python ${{ matrix.python-version }}
+        run: uv python install ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: uv sync --all-extras
+
+      - name: Lint with ruff
+        run: uv run ruff check .
+
+      - name: Type-check with mypy
+        run: uv run mypy src
+
+      - name: Run tests
+        run: uv run pytest
