@@ -100,6 +100,13 @@ export NOVA_AI__ANTHROPIC_API_KEY=sk-ant-...
 uv run nova
 ```
 
+> **Billing note:** `NOVA_AI__ANTHROPIC_API_KEY` is a standard pay-as-you-go
+> [Anthropic API](https://console.anthropic.com/) key, billed via API credits.
+> It is **independent of any Claude subscription (Claude Max / Pro) and of the
+> Claude Code CLI** — Nova calls the Anthropic API directly and never uses the
+> `claude` command, so canceling a subscription does not affect it. The local
+> Ollama brain needs no key and no account at all.
+
 If a model isn't reachable, `/chat` returns a clear **503** message instead of
 crashing.
 
